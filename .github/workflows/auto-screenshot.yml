@@ -1,0 +1,38 @@
+name: Generate OG Image
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - 'index.html' # Chỉ chạy khi file html thay đổi
+      - 'extra/scripts/screenshot.js'
+      - '.github/workflows/auto-screenshot.yml'
+
+jobs:
+  screenshot:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Cấp quyền ghi để bot commit ảnh ngược lại repo
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Take Screenshot
+        run: node screenshot.js
+
+      - name: Commit and Push Image
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "🤖 Auto-update OG Image (Bot)"
+          file_pattern: 'og-image.png'

@@ -1,0 +1,12 @@
+{
+  "name": "nojokes-screenshot",
+  "version": "1.0.0",
+  "description": "Auto generate OG Image",
+  "main": "screenshot.js",
+  "scripts": {
+    "capture": "node extra/scripts/screenshot.js"
+  },
+  "dependencies": {
+    "puppeteer": "^21.0.0"
+  }
+}
