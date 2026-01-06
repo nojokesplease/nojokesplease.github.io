@@ -34,5 +34,5 @@ jobs:
       - name: Commit and Push Image
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "🤖 Auto-update OG Image (Bot)"
-          file_pattern: 'og-image.png'
+          commit_message: "BOT: Auto-update OG Image"
+          file_pattern: 'extra/scripts/og-image.png'
