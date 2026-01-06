@@ -35,4 +35,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "BOT: Auto-update OG Image"
-          file_pattern: 'extra/scripts/og-image.png'
+          file_pattern: 'extra/og-image.png'
