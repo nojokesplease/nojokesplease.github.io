@@ -1,24 +1,37 @@
 const puppeteer = require('puppeteer');
-const fs = require('fs');
 const path = require('path');
 
 (async () => {
   const browser = await puppeteer.launch({
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--allow-file-access-from-files',
+      '--disable-web-security',
+    ],
   });
+
   const page = await browser.newPage();
 
-  // Đặt kích thước chuẩn Open Graph (1200x630)
   await page.setViewport({
     width: 1200,
     height: 630,
-    deviceScaleFactor: 2, // Chụp nét căng (Retina)
+    deviceScaleFactor: 2,
   });
 
   const filePath = path.resolve(__dirname, '..', '..', 'index.html');
-  await page.goto(`file://${filePath}`, { waitUntil: 'networkidle0' });
+  await page.goto(`file://${filePath}`, { waitUntil: 'load' });
 
-  // Chụp ảnh và lưu thành og-image.png
+  // Đợi iframe load thật
+  await page.waitForSelector('iframe');
+  const frameHandle = await page.$('iframe');
+  const frame = await frameHandle.contentFrame();
+  await frame.waitForSelector('body', { timeout: 0 });
+
+  // Đợi font/layout ổn định
+  await page.evaluateHandle('document.fonts.ready');
+  await page.waitForTimeout(300);
+
   await page.screenshot({ path: 'extra/og-image.png' });
 
   await browser.close();
