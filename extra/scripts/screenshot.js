@@ -15,7 +15,7 @@ const path = require('path');
     deviceScaleFactor: 2, // Chụp nét căng (Retina)
   });
 
-  const filePath = path.resolve(__dirname, '..', '..', 'index.html');
+  const filePath = path.resolve(__dirname, '..', '..', 'en/index.html');
   await page.goto(`file://${filePath}`, { waitUntil: 'networkidle0' });
 
   // Chụp ảnh và lưu thành og-image.png
