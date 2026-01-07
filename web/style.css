@@ -1,0 +1,432 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #111111;
+    --link-color: #000000;
+    --accent-color: #f0f0f0;
+    --danger-color: #d32f2f;
+    /* Màu đỏ cho bad */
+    --success-color: #388e3c;
+    /* Màu xanh cho good */
+    --border-color: #ddd;
+    --sub-text-color: #666;
+    --chat-bg: #f9f9f9;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #111111;
+        --text-color: #eeeeee;
+        --link-color: #ffffff;
+        --accent-color: #222222;
+        --border-color: #333;
+        --sub-text-color: #aaa;
+        --chat-bg: #1a1a1a;
+    }
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Nav Bar Style */
+.nav-bar {
+    text-align: right;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+.nav-bar a {
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--sub-text-color);
+    padding: 5px 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.nav-bar a:hover {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+}
+
+h1,
+h2,
+h3 {
+    font-weight: 700;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    letter-spacing: -0.02em;
+}
+
+h1 {
+    font-size: 2rem;
+    border-bottom: 2px solid var(--text-color);
+    padding-bottom: 20px;
+    line-height: 1.3;
+}
+
+h1 .part1 {
+    display: block;
+    font-weight: 800;
+}
+
+h1 .part1 .highlight-not {
+    text-transform: uppercase;
+}
+
+h1 .part2 {
+    display: block;
+    font-size: 1.8rem;
+    margin-top: 5px;
+}
+
+/* Chữ đầu tiên (khi, trong, vì...) màu xám, viết thường */
+h1 .part2 .prefix {
+    font-weight: 400;
+    font-style: normal;
+    color: #888;
+    font-size: 1.2rem;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+/* Phần nội dung chính */
+h1 .part2 .content {
+    font-style: italic;
+    font-weight: 800;
+    vertical-align: middle;
+}
+
+/* Hiệu ứng con trỏ nhấp nháy */
+.cursor {
+    display: inline-block;
+    width: 10px;
+    height: 1.8rem;
+    background-color: var(--text-color);
+    margin-left: 2px;
+    vertical-align: sub;
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+/* Intro text */
+.intro-text {
+    text-align: center;
+    margin: 40px 0;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
+.intro-text em {
+    display: block;
+    font-style: italic;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.intro-text strong {
+    display: block;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+}
+
+p {
+    margin-bottom: 1.2em;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 0.5em;
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: underline;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid var(--border-color);
+    margin: 30px 0;
+}
+
+footer {
+    margin-top: 50px;
+    font-size: 0.8rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 20px;
+    color: var(--sub-text-color);
+}
+
+/* --- REDDIT THREAD & CHAT STYLES --- */
+.reddit-thread,
+.chat-scenario {
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 20px 0;
+    background-color: var(--bg-color);
+}
+
+.post-header {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--accent-color);
+}
+
+.op-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    margin-right: 15px;
+    border: 2px solid #fff;
+    background-color: #ddd;
+}
+
+.post-meta {
+    font-size: 0.9rem;
+}
+
+.post-author {
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.post-time {
+    color: var(--sub-text-color);
+    font-size: 0.8rem;
+}
+
+.post-content {
+    padding: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.post-content p {
+    margin: 0;
+    font-style: italic;
+    color: var(--text-color);
+}
+
+.comment-group {
+    padding: 15px;
+}
+
+.comment-group.bad {
+    background-color: rgba(211, 47, 47, 0.05);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.comment-group.good {
+    background-color: rgba(56, 142, 60, 0.05);
+}
+
+.comment {
+    display: flex;
+    margin-bottom: 12px;
+    align-items: flex-start;
+}
+
+.comment:last-child {
+    margin-bottom: 0;
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+    color: #fff;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.comment-body {
+    font-size: 0.95rem;
+}
+
+.comment-user {
+    font-weight: bold;
+    font-size: 0.85rem;
+    margin-right: 5px;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.comment-text {
+    margin: 0;
+}
+
+/* Scenario Styles */
+.scenario-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.chat-scenario {
+    background-color: var(--chat-bg);
+    border-left: 4px solid var(--accent-color);
+}
+
+.chat-scenario .bad .user-avatar {
+    background-color: var(--danger-color);
+}
+
+.chat-scenario .good .user-avatar {
+    background-color: var(--success-color);
+}
+
+.chat-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+}
+
+.chat-label.bad {
+    color: var(--danger-color);
+    border: 1px solid var(--danger-color);
+}
+
+.chat-label.good {
+    color: var(--success-color);
+    border: 1px solid var(--success-color);
+}
+
+/* Copy Link Section */
+.copy-section {
+    margin-top: 40px;
+    padding: 20px;
+    border: 2px dashed var(--border-color);
+    background-color: var(--accent-color);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.copy-btn {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 10px auto;
+    transition: opacity 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.copy-btn:hover {
+    opacity: 0.9;
+}
+
+.copy-btn:active {
+    transform: translateY(1px);
+}
+
+.copy-success {
+    color: var(--success-color);
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-left: 10px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: block;
+    margin-top: 5px;
+}
+
+.copy-success.visible {
+    opacity: 1;
+}
+
+.usage-steps {
+    text-align: left;
+    margin-top: 20px;
+    width: 100%;
+}
+
+/* Avatar colors */
+.av-a {
+    background-color: #e57373;
+}
+
+.av-b {
+    background-color: #ba68c8;
+}
+
+.av-c {
+    background-color: #9575cd;
+}
+
+.av-d {
+    background-color: #7986cb;
+}
+
+.av-good {
+    background-color: var(--success-color);
+}
+
+/* Story & Hater Sections */
+.personal-story {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.hater-response {
+    margin-top: 40px;
+    background-color: var(--chat-bg);
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.stamp-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.stamp-img {
+    max-width: 200px;
+    height: auto;
+    border-radius: 4px;
+}
