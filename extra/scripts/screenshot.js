@@ -1,13 +1,13 @@
 const puppeteer = require('puppeteer');
 const path = require('path');
+const server = require('./server');
 
 (async () => {
   const browser = await puppeteer.launch({
+    headless: 'old', // tránh drama iframe
     args: [
       '--no-sandbox',
       '--disable-setuid-sandbox',
-      '--allow-file-access-from-files',
-      '--disable-web-security',
     ],
   });
 
@@ -19,10 +19,11 @@ const path = require('path');
     deviceScaleFactor: 2,
   });
 
-  const filePath = path.resolve(__dirname, '..', '..', 'index.html');
-  await page.goto(`file://${filePath}`, { waitUntil: 'load' });
+  await page.goto('http://localhost:3000/index.html', {
+    waitUntil: 'load',
+  });
 
-  // Đợi iframe load thật
+  // Đợi iframe load ĐÚNG NGHĨA
   await page.waitForSelector('iframe');
   const frameHandle = await page.$('iframe');
   const frame = await frameHandle.contentFrame();
@@ -30,10 +31,14 @@ const path = require('path');
 
   // Đợi font/layout ổn định
   await page.evaluateHandle('document.fonts.ready');
-  await new Promise(resolve => setTimeout(resolve, 300));
+  await new Promise(r => setTimeout(r, 200));
 
-  await page.screenshot({ path: 'extra/og-image.png' });
+  await page.screenshot({
+    path: path.resolve(__dirname, '..', 'extra/og-image.png'),
+  });
 
   await browser.close();
-  console.log('Đã chụp');
+  server.close();
+
+  console.log('✅ Đã chụp OG image');
 })();
