@@ -30,7 +30,7 @@ const path = require('path');
 
   // Đợi font/layout ổn định
   await page.evaluateHandle('document.fonts.ready');
-  await page.waitForTimeout(300);
+  await new Promise(resolve => setTimeout(resolve, 300));
 
   await page.screenshot({ path: 'extra/og-image.png' });
 
