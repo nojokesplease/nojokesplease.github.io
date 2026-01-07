@@ -1,13 +1,33 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="web/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+
+<body style="padding: 0;"> <!-- Cần phải tắt padding do style body vậy -->
     <nav class="nav-bar">
-        <p>This site is available in other languages:</p>
-        <a href="about:blank" title="Switch to English (Coming Soon)">English</a>
+        <p>This site is available in other languages</p>
+        <a href="/index.html" target="_top" title="English">English</a>
+        <a href="/vi/index.html" target="_top" title="Vietnamese">Tiếng Việt</a>
+        <p class="lang-redirected" id="lang-redirected">
+            Your browser says you don't speak the previous language, so I redirected you here.<br>You can switch back if
+            I was wrong.
+        </p>
     </nav>
 </body>
+
+<script>
+    // Lắng nghe lệnh từ trang cha
+    window.addEventListener('message', function (event) {
+        if (event.data === 'showRedirectMessage') {
+            const msgBox = document.getElementById('lang-redirected');
+            if (msgBox) {
+                msgBox.classList.add('visible');
+            }
+        }
+    });
+</script>
+
 </html>
