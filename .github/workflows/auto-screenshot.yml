@@ -1,4 +1,4 @@
-name: Generate OG Image
+name: Generate OG image + Deploy to GitHub Pages
 
 on:
   push:
