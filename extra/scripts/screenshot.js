@@ -19,22 +19,21 @@ const server = require('./server');
     deviceScaleFactor: 2,
   });
 
-  await page.goto('http://localhost:3000/index.html', {
+  await page.goto('http://localhost:3000/', {
     waitUntil: 'load',
   });
 
   // Đợi iframe load ĐÚNG NGHĨA
-  await page.waitForSelector('iframe');
-  const frameHandle = await page.$('iframe');
-  const frame = await frameHandle.contentFrame();
-  await frame.waitForSelector('body', { timeout: 0 });
+  await page.goto('http://localhost:3000/', {
+    waitUntil: 'domcontentloaded',
+  });
 
   // Đợi font/layout ổn định
   await page.evaluateHandle('document.fonts.ready');
   await new Promise(r => setTimeout(r, 200));
 
   await page.screenshot({
-    path: path.resolve(__dirname, '..', 'extra/og-image.png'),
+    path: path.resolve(__dirname, '..', '..', 'extra/og-image.png'),
   });
 
   await browser.close();
