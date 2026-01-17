@@ -66,7 +66,7 @@ function checkRedirectMessage() {
         const iframe = document.querySelector('iframe');
 
         if (iframe) {
-            iframe.onload = function() {
+            iframe.onload = function () {
                 iframe.contentWindow.postMessage('showRedirectMessage', '*');
             };
             // Phòng trường hợp iframe đã load xong trước khi script chạy
@@ -199,3 +199,13 @@ function copyLink() {
     }
     document.body.removeChild(tempInput);
 }
+
+// --- PHẦN 5: AUTO RESIZE IFRAME (MỚI) ---
+window.addEventListener('message', function (event) {
+    if (event.data && event.data.type === 'setHeight') {
+        const iframe = document.querySelector('iframe');
+        if (iframe) {
+            iframe.style.height = event.data.height + 'px';
+        }
+    }
+});
