@@ -58,6 +58,11 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      - name: Flatten translations
+        run: |
+          if [ -d "translations" ]; then
+            cp -rn translations/* .
+          fi
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

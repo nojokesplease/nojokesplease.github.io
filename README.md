@@ -15,14 +15,18 @@ The project is designed with simplicity and performance in mind, utilizing pure 
 
 ## 📂 Project Structure
 
-The repository follows a flat and simple structure:
+The repository follows a clean and organized structure:
 
 ```
 /
-├── index.html       # The main entry point
-├── web/             # CSS and JS will go there
-├── assets/          # Images and static resources
-└── README.md        # Documentation
+├── .github/        # GitHub Actions workflows (e.g., auto-screenshot)
+├── extra/          # Utility scripts and Open Graph images
+├── translations/   # Multi-language versions (e.g., /vi)
+│   └── vi/         # Vietnamese translation
+├── web/            # Core styles, scripts, and shared components (navbar)
+├── index.html      # Main entry point (English version)
+├── package.json    # Project dependencies and tool configurations
+└── README.md       # Project documentation
 ```
 
 ## 🚀 Local Development
