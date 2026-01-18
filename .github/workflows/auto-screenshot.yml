@@ -61,7 +61,8 @@ jobs:
       - name: Flatten translations
         run: |
           if [ -d "translations" ]; then
-            cp -rn translations/* .
+            mv -n translations/* .
+            rm -rf translations
           fi
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
